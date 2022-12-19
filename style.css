@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Rye&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+:root {
+    color-scheme: dark light;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Rye", cursive;
+    font-family: "Rubik 80s Fade", cursive;
+    font-family: "Rubik Spray Paint", cursive;
+}
+
+#bodyBG {
+    aspect-ratio: 3/2;
+    width: max(calc(100%), calc(100vh / 2 * 3));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+#bodyBG > * {
+    display: block;
+}
+
+.op-container {
+    width: 100%;
+    isolation: isolate;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: translate(0, -100%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.op {
+    width: 50%;
+    max-width: 350px;
+    flex: 1 0;
+    position: relative;
+    z-index: -1;
+    cursor: pointer;
+}
+
+.op > span {
+    font-size: 3rem;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 20px));
+    color: brown;
+}
+
+#cast.in {
+    transform: rotate(70deg) translate(50%, 50%) scale(0);
+    opacity: 0;
+}
+
+#cast.anim {
+    animation-name: cast-show-up-animation;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+#cast {
+    transform: rotate(20deg) translate(-15%, 25%) scale(1.3);
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1.4);
+}
+
+#cast:hover {
+    transform: rotate(20deg) translate(-15%, 25%) scale(1.15);
+}
+
+#more.in {
+    transform: rotate(-80deg) translate(-40%, 30%) scale(0);
+    opacity: 0;
+}
+
+#more.anim {
+    animation-name: more-show-up-animation;
+    animation-duration: 0.6s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+#more {
+    transform: rotate(-30deg) translate(15%, 25%) scale(1.3);
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1.4);
+}
+
+#more:hover {
+    transform: rotate(-30deg) translate(15%, 25%) scale(1.15);
+}
+
+@keyframes cast-show-up-animation {
+    from {
+        transform: rotate(70deg) translate(50%, 50%) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(20deg) translate(-15%, 25%) scale(1.3);
+        opacity: 1;
+    }
+}
+
+@keyframes more-show-up-animation {
+    from {
+        transform: rotate(-80deg) translate(-40%, 30%) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(-30deg) translate(15%, 25%) scale(1.3);
+        opacity: 1;
+    }
+}
+
+main {
+    width: 80%;
+    max-width: 720px;
+    margin: auto;
+    padding: 3.5rem 0;
+    aspect-ratio: 16/9;
+    isolation: isolate;
+}
+
+#playerContainer {
+    position: relative;
+    width: 85%;
+    margin: auto;
+    aspect-ratio: 16/9;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.embed {
+    width: 100%;
+    height: 100%;
+}
+#monkeCont {
+    width: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-10%, 16%);
+    pointer-events: none;
+}
+
+#playerContainer.in {
+    transform: translate(0, calc(-100% - 5rem));
+    opacity: 0;
+}
+
+#playerContainer.anim {
+    animation-name: show-up-player;
+    animation-delay: 0.5s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#playerContainer {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+@keyframes show-up-player {
+    from {
+        transform: translate(0, calc(-100% - 5rem));
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+main #castCont {
+    position: absolute;
+    width: 90%;
+    max-width: 750px;
+    aspect-ratio: 16/9;
+    top: 0;
+    left: max(calc(5%), calc((100vw - 750px) / 2));
+    transform: translate(0, calc(-100% - 5rem));
+    border-radius: 0.5rem;
+    background-image: url("img/wood.png");
+    background-position: left;
+    background-size: cover;
+}
+
+main.cast #castCont {
+    transform: translate(0, 0);
+}
+
+main.animin.cast #castCont {
+    animation-name: show-up;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+main.animout.cast #castCont {
+    animation: hide;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+main #moreCont {
+    position: absolute;
+    width: 90%;
+    max-width: 750px;
+    aspect-ratio: 16/9;
+    top: 0;
+    left: max(calc(5%), calc((100vw - 750px) / 2));
+    transform: translate(0, calc(-100% - 5rem));
+    border-radius: 0.5rem;
+    background-image: url("img/wood.png");
+    background-position: left;
+    background-size: cover;
+}
+
+main.more #moreCont {
+    transform: translate(0, 0);
+}
+
+main.animin.more #moreCont {
+    animation-name: show-up;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+main.animout.more #moreCont {
+    animation: hide;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show-up {
+    from {
+        transform: translate(0, calc(-100% - 5rem));
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+@keyframes hide {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(0, calc(-100% - 5rem));
+    }
+}
+
+#castCont {
+    display: grid;
+    place-content: center;
+}
+
+.rouli {
+    font-size: 200%;
+    font-family: "Lobster", cursive;
+    color: whitesmoke;
+    text-shadow: 2px 2px 0px black;
+}
+
+.gonza {
+    color: cornflowerblue;
+}
+.bernat {
+    color: springgreen;
+}
+.singh {
+    color: crimson;
+}
+
+#moreCont {
+    display: grid;
+    place-content: center;
+    font-size: 2rem;
+}
+
+#moreCont .links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Lobster", cursive;
+    text-shadow: 4px 1px 0px black;
+}
+
+#moreCont .links a {
+    color: white;
+    text-shadow: 4px 1px 0px firebrick;
+    transition: 0.7s;
+}
+
+#moreCont .links a:hover {
+    color: firebrick;
+    text-shadow: 4px 1px 0px white;
+}
